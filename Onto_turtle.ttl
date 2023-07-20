@@ -1,0 +1,168 @@
+@prefix : <http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring/> .
+
+<http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#belongs_to
+:belongs_to rdf:type owl:ObjectProperty ;
+            rdfs:domain :Material ;
+            rdfs:range :Product .
+
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#creates
+:creates rdf:type owl:ObjectProperty ;
+         rdfs:domain :Batch ;
+         rdfs:range :Batch .
+
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#is_of
+:is_of rdf:type owl:ObjectProperty ;
+       rdfs:domain :Material ;
+       rdfs:range :Material_Type .
+
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#made_at
+:made_at rdf:type owl:ObjectProperty ;
+         rdfs:domain :Batch ;
+         rdfs:range :Site .
+
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#made_of
+:made_of rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf owl:topObjectProperty ;
+         rdfs:domain :Batch ;
+         rdfs:range :Material .
+
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#part_of
+:part_of rdf:type owl:ObjectProperty ;
+         rdfs:domain :Equipment_Part ;
+         rdfs:range :Equipment .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#Description
+:Description rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Equipment .
+
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#Name
+:Name rdf:type owl:DatatypeProperty ;
+      rdfs:domain :Equipment .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#Batch
+:Batch rdf:type owl:Class ;
+       rdfs:subClassOf :Manufacturing ;
+       rdfs:comment "batch" ;
+       rdfs:isDefinedBy """A defined quantity of material that is intended or claimed to be uniform in character and quality, within specified limits, and which is produced during a single order during the same cycle of manufacture.
+To complete certain stages of manufacture it may be necessary to divide a batch into a number of sub-batches,
+ which are later brought back together to form a final uniform batch.""" ;
+       rdfs:label "Batch" .
+
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#Biopharam_Product
+:Biopharam_Product rdf:type owl:Class ;
+                   rdfs:subClassOf :Product ;
+                   rdfs:label "Biopharma Product" .
+
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#Equipment
+:Equipment rdf:type owl:Class ;
+           rdfs:subClassOf :Manufacturing ;
+           rdfs:comment "Equipment" ;
+           rdfs:isDefinedBy "A machine, tool, or piece of apparatus used in the drug development, manufacturing or packing processes." .
+
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#Equipment_Part
+:Equipment_Part rdf:type owl:Class ;
+                rdfs:subClassOf :Equipment .
+
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#Manufacturing
+:Manufacturing rdf:type owl:Class ;
+               rdfs:isDefinedBy "Ontology defining the manufactuirng processes and related concepts" ;
+               rdfs:label "Manufacturing Ontology" .
+
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#Material
+:Material rdf:type owl:Class ;
+          rdfs:subClassOf :Manufacturing ;
+          rdfs:isDefinedBy """Generic Material is a variety of types of material, not taking into account the specifics of quantity, dose, market, supplier etc. 
+It contains Material required for the end Product construction e.g.
+		- Device
+		- Packaging etc""" ;
+          rdfs:label "Material" .
+
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#Material_Type
+:Material_Type rdf:type owl:Class ;
+               rdfs:subClassOf :Manufacturing ;
+               rdfs:isDefinedBy "A classification of a product/product component or a component used in manufacture (e.g. solvent, intermediate, reagent).  This will also include packaging and devices.  A material usually has a specification. A compound is a specific material type." ;
+               rdfs:label "Material Type" .
+
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#Operation
+:Operation rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#Phase
+:Phase rdf:type owl:Class ;
+       rdfs:subClassOf :Operation .
+
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#Procedure
+:Procedure rdf:type owl:Class ;
+           rdfs:subClassOf :Manufacturing ;
+           rdfs:isDefinedBy "ISA-88 Batch Control - The highest level in the procedural control model. A procedure defines the strategy for making the batch. The procedure consists of Unit Procedures." ;
+           rdfs:label "Procedure" .
+
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#Product
+:Product rdf:type owl:Class ;
+         rdfs:subClassOf :Manufacturing ;
+         rdfs:label "Product" .
+
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#Site
+:Site rdf:type owl:Class ;
+      rdfs:subClassOf :Manufacturing ;
+      rdfs:isDefinedBy """A Site is an area on which one or more buildings are constructed for exclusive use by GSK
+Examples: 
+Upper Merion
+Ware""" ;
+      rdfs:label "Site" .
+
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#Small_Molecule_Product
+:Small_Molecule_Product rdf:type owl:Class ;
+                        rdfs:subClassOf :Product ;
+                        rdfs:label "Small Molecule Product" .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/vr913628/ontologies/2023/2/Manufatcuring#Bioreactor
+:Bioreactor rdf:type owl:NamedIndividual ,
+                     :Equipment .
+
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
